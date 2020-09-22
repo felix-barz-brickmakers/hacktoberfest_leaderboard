@@ -10,28 +10,20 @@ namespace Backend.Services
 {
     public interface ILeaderboardService
     {
-        Task AddUser(string username);
         IAsyncEnumerable<LeaderboardEntryModel> GenerateLeaderboard();
     }
 
     public class LeaderboardService : ILeaderboardService
     {
         private readonly IGitHubClient _gitHubClient;
-
         private readonly int _searchYear;
-
-        private readonly ISet<string> _usernames = new HashSet<string>();
+        private readonly IReadOnlyList<string> _usernames;
 
         public LeaderboardService(IGitHubClient gitHubClient, IConfiguration configuration)
         {
             _gitHubClient = gitHubClient;
             _searchYear = int.Parse(configuration["Year"]);
-        }
-
-        public Task AddUser(string username)
-        {
-            _usernames.Add(username);
-            return Task.CompletedTask;
+            _usernames = configuration.GetSection("Usernames").Get<List<string>>();
         }
 
         public IAsyncEnumerable<LeaderboardEntryModel> GenerateLeaderboard()

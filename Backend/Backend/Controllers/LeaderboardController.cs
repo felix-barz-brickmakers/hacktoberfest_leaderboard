@@ -28,13 +28,5 @@ namespace Backend.Controllers
             var result = await _leaderboardService.GenerateLeaderboard().ToListAsync();
             return Ok(result);
         }
-
-        [HttpPost]
-        [Route("register")]
-        public async Task<NoContentResult> Register([FromForm] string username)
-        {
-            await _leaderboardService.AddUser(username);
-            return NoContent();
-        }
     }
 }
