@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Backend.Models;
 using Backend.Services;
@@ -23,12 +25,16 @@ namespace Backend.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<LeaderboardEntryModel>>> Get()
         {
-            var result = new List<LeaderboardEntryModel>();
-            await foreach (var entry in _leaderboardService.GenerateLeaderboard(new[] {"Skycoder42"}))
-            {
-                result.Add(entry);
-            }
+            var result = await _leaderboardService.GenerateLeaderboard().ToListAsync();
             return Ok(result);
+        }
+
+        [HttpPost]
+        [Route("register")]
+        public async Task<NoContentResult> Register([FromForm] string username)
+        {
+            await _leaderboardService.AddUser(username);
+            return NoContent();
         }
     }
 }
