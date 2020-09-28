@@ -17,7 +17,8 @@ const Board: FunctionComponent = () => {
     if (!rep.ok) {
       throw Error(rep.statusText);
     } else {
-      return await rep.json() as LeaderboardEntryModel[];
+      const data = await rep.json() as LeaderboardEntryModel[];
+      return data.sort((a, b) => b.prCount - a.prCount);
     }
   });
 
