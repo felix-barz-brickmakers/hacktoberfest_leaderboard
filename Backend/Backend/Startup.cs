@@ -41,6 +41,7 @@ namespace Backend
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseCors(builder => builder.AllowAnyOrigin());
             }
 
             app.UseHttpsRedirection();
