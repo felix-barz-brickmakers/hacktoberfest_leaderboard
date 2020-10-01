@@ -18,6 +18,7 @@ namespace Backend
         
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
+                .ConfigureAppConfiguration(builder => { builder.AddEnvironmentVariables("BM_HTF_LB_"); })
                 .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); });
     }
 }

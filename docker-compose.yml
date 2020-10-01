@@ -1,0 +1,19 @@
+version: "3.4"
+services:
+  backend:
+    build:
+      context: Backend/Backend
+      dockerfile: Dockerfile
+    image: bmhtf.azurecr.io/leaderboard-backend:latest
+    environment:
+      BM_HTF_LB_Year: 2020
+      BM_HTF_LB_Usernames__0: github_user_1
+      BM_HTF_LB_Usernames__1: github_user_2
+      BM_HTF_LB_Usernames__2: ...
+  web:
+    build:
+      context: web
+      dockerfile: Dockerfile
+    image: bmhtf.azurecr.io/leaderboard-web:latest
+    ports:
+      - 80:80

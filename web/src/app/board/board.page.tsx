@@ -13,7 +13,7 @@ const Board: FunctionComponent = () => {
     isResolved,
     isRejected
   } = useLoads('leaderboard', async () => {
-    const rep = await fetch("https://localhost:5001/leaderboard");
+    const rep = await fetch(`${window.location.origin}/leaderboard`);
     if (!rep.ok) {
       throw Error(rep.statusText);
     } else {
