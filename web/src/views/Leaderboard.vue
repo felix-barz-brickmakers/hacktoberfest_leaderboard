@@ -1,6 +1,8 @@
 <template>
   <div class="leaderboard">
-    Leaderboard
+    <h1 class="h1-darkblue">
+      Leaderboard
+    </h1>
 
     <div v-if="result">
       <leaderboard-list-item
@@ -41,5 +43,10 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+.leaderboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 </style>
