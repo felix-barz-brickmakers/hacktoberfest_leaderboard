@@ -23,7 +23,7 @@ namespace Backend.Services
         private readonly IReadOnlyList<string> _usernames;
 
         private readonly object _leaderboardLock = new object();
-        private List<LeaderboardEntryModel> _leaderboard;
+        private List<LeaderboardEntryModel> _leaderboard = new List<LeaderboardEntryModel>();
 
         public LeaderboardService(IGitHubClient gitHubClient, IConfiguration configuration, ILogger<LeaderboardService> logger)
         {
