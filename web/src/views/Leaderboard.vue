@@ -4,8 +4,14 @@
       Leaderboard
     </h1>
 
-    <div v-if="result">
-      <leaderboard-list-item
+    <div v-if="loading">
+      <LoadingSpinner />
+    </div>
+    <div v-else-if="error">
+      Error while loading leaderboard
+    </div>
+    <div v-else-if="result">
+      <LeaderboardListItem
         v-for="user in result"
         :key="user.name"
         :entry="user"
@@ -19,17 +25,21 @@ import LeaderboardListItem from '@/components/Leaderboard/LeaderboardListItem.vu
 import httpClient from '@/services/httpClient/httpClient';
 import { defineComponent, onBeforeMount } from '@vue/composition-api';
 import { LeaderboardEntry } from '@/models/LeaderboardEntry';
+import LoadingSpinner from '@/components/LoadingSpinner/LoadingSpinner.vue';
 import usePromise from '../composables/usePromise';
 
 export default defineComponent({
   name: 'Leaderboard',
   components: {
     LeaderboardListItem,
+    LoadingSpinner,
   },
   setup() {
     const {
       createPromise,
       result,
+      loading,
+      error,
     } = usePromise(async () => httpClient.get<LeaderboardEntry[]>('leaderboard'));
 
     onBeforeMount(async () => {
@@ -38,6 +48,8 @@ export default defineComponent({
 
     return {
       result,
+      loading,
+      error,
     };
   },
 });

@@ -1,15 +1,18 @@
 <template>
   <div class="leaderboardListItem">
-    <div class="avatar" />
+    <div
+      class="avatar"
+      :style="{ backgroundImage: `url('${entry.avatarUrl}')` }"
+    />
     <div class="username">
       <h3 class="heading">
         {{ entry.name }}
       </h3>
       <div class="subHeading">
-        username
+        {{ entry.username }}
       </div>
     </div>
-    <leaderboard-pr-count :pr-count="entry.prCount" />
+    <LeaderboardPrCount :pr-count="entry.prCount" />
   </div>
 </template>
 
@@ -50,7 +53,6 @@ export default defineComponent({
     border-radius: 50%;
     background-color: $BM-LightGray;
     margin-right: 16px;
-    background-image: url("https://github.com/sabifa.png");
     background-size: contain;
   }
 

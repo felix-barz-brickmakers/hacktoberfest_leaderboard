@@ -75,7 +75,9 @@ namespace Backend.Services
                 yield return new LeaderboardEntryModel
                 {
                     Name = user.Name,
-                    PrCount = result.TotalCount
+                    PrCount = result.TotalCount,
+                    Username = user.Login,
+                    AvatarUrl = user.AvatarUrl,
                 };
             }
         }
