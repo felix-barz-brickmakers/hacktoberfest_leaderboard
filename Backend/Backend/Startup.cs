@@ -33,6 +33,17 @@ namespace Backend
             services.AddControllers();
 
             services.AddHostedService<LeaderboardUpdateService>();
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowLocalhost8080",
+                    builder =>
+                    {
+                        builder.WithOrigins("http://localhost:8080")
+                            .AllowAnyHeader()
+                            .AllowAnyMethod();
+                    });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -41,7 +52,7 @@ namespace Backend
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseCors(builder => builder.AllowAnyOrigin());
+                app.UseCors("AllowLocalhost8080");
             }
 
             app.UseHttpsRedirection();
