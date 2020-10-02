@@ -10,7 +10,10 @@
     <div v-else-if="error">
       Error while loading leaderboard
     </div>
-    <div v-else-if="result">
+    <div
+      v-else-if="result"
+      class="leaderboard_list"
+    >
       <LeaderboardListItem
         v-for="user in result"
         :key="user.name"
@@ -36,10 +39,7 @@ export default defineComponent({
   },
   setup() {
     const {
-      createPromise,
-      result,
-      loading,
-      error,
+      createPromise, result, loading, error,
     } = usePromise(async () => httpClient.get<LeaderboardEntry[]>('leaderboard'));
 
     onBeforeMount(async () => {
@@ -60,5 +60,12 @@ export default defineComponent({
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  .leaderboard_list {
+    @media screen and (max-width: 450px) {
+      position: relative;
+      width: 100%;
+    }
+  }
 }
 </style>

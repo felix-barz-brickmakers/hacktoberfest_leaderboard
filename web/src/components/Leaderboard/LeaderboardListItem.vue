@@ -47,13 +47,26 @@ export default defineComponent({
   display: flex;
   align-items: center;
 
+  @media screen and (max-width: 450px) {
+    width: 100%;
+
+    .heading {
+      width: 70%;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+  }
+
   .avatar {
+    min-width: 50px;
     width: 50px;
     height: 50px;
     border-radius: 50%;
     background-color: $BM-LightGray;
     margin-right: 16px;
     background-size: contain;
+    background-repeat: no-repeat;
   }
 
   .username {

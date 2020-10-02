@@ -7,7 +7,7 @@
 <style lang="scss">
 body {
   background-color: $BM-LightBlue;
-  padding: 20px;
+  margin: 0;
 
   #app {
     -webkit-font-smoothing: antialiased;
@@ -19,8 +19,15 @@ body {
     line-height: 1.5;
     color: $BM-Darkblue;
     text-align: center;
+    padding: 20px;
 
-    @media screen and (min-width: 421px) {
+    @media screen and (max-width: 450px) {
+      position: relative;
+      width: 100vw;
+      padding: 16px;
+    }
+
+    @media screen and (min-width: 451px) {
       font-size: 18px;
     }
   }

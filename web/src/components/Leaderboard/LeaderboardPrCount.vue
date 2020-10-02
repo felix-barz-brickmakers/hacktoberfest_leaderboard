@@ -39,7 +39,7 @@ export default defineComponent({
   }
 
   .pr-count {
-    margin-top: 12px;
+    margin-top: 16px;
     color: $BM-Pastel-Plum-2;
   }
 }
