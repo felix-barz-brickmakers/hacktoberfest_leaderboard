@@ -1,4 +1,4 @@
-export const baseUrl = process.env.VUE_APP_ENV === 'production' ? window.location.origin : 'https://localhost:5001/';
+export const baseUrl = process.env.VUE_APP_ENV === 'production' ? window.location.origin : 'https://localhost:5001';
 
 enum HttpMethod {
   POST = 'POST',

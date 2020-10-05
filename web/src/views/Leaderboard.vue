@@ -40,7 +40,7 @@ export default defineComponent({
   setup() {
     const {
       createPromise, result, loading, error,
-    } = usePromise(async () => httpClient.get<LeaderboardEntry[]>('leaderboard'));
+    } = usePromise(async () => httpClient.get<LeaderboardEntry[]>('/leaderboard'));
 
     onBeforeMount(async () => {
       await createPromise();
