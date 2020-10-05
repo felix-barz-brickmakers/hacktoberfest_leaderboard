@@ -1,0 +1,9 @@
+@mixin proxima-nova-regular() {
+  font-family: "proxima-nova", -apple-system, Arial, sans-serif;
+  font-weight: 400;
+}
+
+@mixin proxima-nova-extrabold() {
+  font-family: "proxima-nova", -apple-system, Arial, sans-serif;
+  font-weight: 800;
+}
