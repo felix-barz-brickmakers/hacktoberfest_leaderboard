@@ -42,6 +42,9 @@ namespace Backend
                         builder.WithOrigins("http://localhost:8080")
                             .AllowAnyHeader()
                             .AllowAnyMethod();
+                        builder.WithOrigins("https://localhost:8080")
+                            .AllowAnyHeader()
+                            .AllowAnyMethod();
                     });
             });
         }
@@ -53,9 +56,12 @@ namespace Backend
             {
                 app.UseDeveloperExceptionPage();
                 app.UseCors("AllowLocalhost8080");
+            } 
+            else
+            {
+                app.UseHttpsRedirection();
             }
 
-            app.UseHttpsRedirection();
             app.UseRouting();
             app.UseAuthorization();
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });

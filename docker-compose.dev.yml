@@ -1,0 +1,35 @@
+version: "3.4"
+services:
+  backend:
+    image: mcr.microsoft.com/dotnet/core/sdk:3.1
+    working_dir: /app
+    command: dotnet watch run --urls http://0.0.0.0:5000;https://0.0.0.0:5001
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+    ports:
+      - 5000:5000
+      - 5001:5001
+    volumes:
+      - ./Backend/Backend:/app:cached
+      - backend_nuget_cache:/root/.nuget
+      - backend_bin:/opt/signaling_api/bin
+      - backend_obj:/opt/signaling_api/obj
+  web:
+    image: node:alpine
+    working_dir: /app
+    command: sh -c 'yarn && yarn serve'
+    environment:
+      NODE_ENV: development
+      VUE_APP_ENV: development
+    ports:
+      - 8080:8080
+    volumes:
+      - ./web:/app:cached
+      - web_yarn_cache:/usr/local/share/.cache/yarn
+      - web_node_modules:/app/node_modules
+volumes:
+  backend_nuget_cache:
+  backend_bin:
+  backend_obj:
+  web_yarn_cache:
+  web_node_modules:
